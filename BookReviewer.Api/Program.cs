@@ -1,4 +1,5 @@
 using BookReviewer.Api.Data;
+using BookReviewer.Api.Endpoints;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,10 +10,11 @@ builder.Services.AddDbContext<DataContext>(opts =>
 {
     opts.UseSqlite(builder.Configuration.GetValue<string>("ConnectionStrings:Sqlite"));
 });
+builder.Services.AddBookEndpoints();
 
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
+app.UseBookEndpoints();
 
 if (app.Environment.IsDevelopment())
 {
