@@ -7,7 +7,7 @@ public static class BookEndpoints
 {
     public static IServiceCollection AddBookEndpoints(this IServiceCollection services)
     {
-        services.AddTransient<IBookRepository, BookRepository>();
+        services.AddScoped<IBookRepository, BookRepository>();
         return services;
     }
 
