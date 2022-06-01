@@ -11,14 +11,13 @@ public static class BookEndpoints
         return services;
     }
 
-    public static IEndpointRouteBuilder UseBookEndpoints(this IEndpointRouteBuilder app)
+    public static void UseBookEndpoints(this IEndpointRouteBuilder app)
     {
         app.MapGet("/books", async (IBookRepository bookRepo) =>
         {
             var books = await bookRepo.GetBooksAsync();
+
             return Results.Ok(books);
         });
-        
-        return app;
     }
 }
