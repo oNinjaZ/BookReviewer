@@ -43,10 +43,10 @@ namespace BookReviewer.Api.Migrations
                     b.Property<int?>("AuthorId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("PageCount")
+                    b.Property<int?>("PageCount")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("PublishDate")
+                    b.Property<DateTime?>("PublishDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
