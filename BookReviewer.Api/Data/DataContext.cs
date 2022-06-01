@@ -5,14 +5,19 @@ namespace BookReviewer.Api.Data;
 
 public class DataContext : DbContext
 {
-    public DbSet<Author> Author { get; set; }
-    public DbSet<Book> Book { get; set; }
-    public DbSet<BookGenre> BookGenre { get; set; }
-    public DbSet<BookTag> BookTag { get; set; }
-    public DbSet<Genre> Genre { get; set; }
-    public DbSet<Review> Review { get; set; }
-    public DbSet<Reviewer> Reviewer { get; set; }
-    public DbSet<Tag> Tag { get; set; }
+    public DbSet<Author>? Author { get; set; }
+    public DbSet<Book>? Book { get; set; }
+    public DbSet<BookGenre>? BookGenre { get; set; }
+    public DbSet<BookTag>? BookTag { get; set; }
+    public DbSet<Genre>? Genre { get; set; }
+    public DbSet<Review>? Review { get; set; }
+    public DbSet<Reviewer>? Reviewer { get; set; }
+    public DbSet<Tag>? Tag { get; set; }
+
+    public DataContext(DbContextOptions<DataContext> options) : base(options)
+    {
+        
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
