@@ -2,9 +2,9 @@ namespace BookReviewer.Api.Models;
 
 public class Review 
 {
-    public int Id { get; set; }
-    public string? Title { get; set; }
-    public string? Text { get; set; }
-    public Book? Book { get; set; }
-    public Reviewer? Reviewer { get; set; }
+    public int Id { get; set; } = default!; 
+    public string Text { get; set; } = default!;
+    public int Rating { get; set; }
+    public Book Book { get; set; } = default!;
+    public Reviewer Reviewer { get; set; } = default!;
 }
