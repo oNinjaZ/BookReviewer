@@ -13,15 +13,17 @@ public class BookRepository : IBookRepository
         _context = context;
     }
 
+    public async Task<ICollection<Book>> GetBooksAsync() => await _context.Book.ToListAsync();
+
     public async Task<Book?> GetBookAsync(int id) => await _context.Book.FirstOrDefaultAsync(b => b.Id == id);
+    
+    public async Task<bool> BookExistsAsync(int id) => await _context.Book.AnyAsync(b => b.Id == id);
 
     public async Task<Book?> GetBookAsync(string title)
     {
         return await _context.Book.FirstOrDefaultAsync(b =>
             b.Title.ToUpper() == title.ToUpper());
     }
-
-    public async Task<ICollection<Book>> GetBooksAsync() => await _context.Book.ToListAsync();
 
     public async Task<double> GetBookRatingAsync(int id)
     {
@@ -31,4 +33,5 @@ public class BookRepository : IBookRepository
         var ovrRating = (double)ratings.Sum(r => r.Rating) / ratings.Count();
         return Math.Round(ovrRating, 1);
     }
+
 }
