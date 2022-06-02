@@ -3,7 +3,7 @@ using BookReviewer.Api.Interfaces;
 using BookReviewer.Api.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookReviewer.Api.Repository;
+namespace BookReviewer.Api.Repositories;
 
 public class BookRepository : IBookRepository
 {

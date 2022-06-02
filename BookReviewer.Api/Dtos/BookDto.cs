@@ -1,9 +1,9 @@
 namespace BookReviewer.Api.Dtos;
 
-public class BookDto
+public record BookDto
 {
-    public int Id { get; set; }
-    public string Title { get; set; } = default!;
+    public int Id { get; init; }
+    public string Title { get; init; } = default!;
     public DateTime PublishDate { get; set; }
-    public int PageCount { get; set; }
+    public int PageCount { get; init; }
 }

@@ -31,5 +31,6 @@ public interface IBookRepository
     /// <returns>The average rating, rounded to the nearest tenths.</returns>
     Task<double> GetBookRatingAsync(int id);
 
+    
     Task<bool> BookExistsAsync(int id);
 }
