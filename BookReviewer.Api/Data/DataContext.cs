@@ -7,11 +7,12 @@ public class DataContext : DbContext
 {
     public DbSet<Author> Author { get; set; } = default!;
     public DbSet<Book> Book { get; set; } = default!;
+    public DbSet<AuthorBook> AuthorBooks { get; set; } = default!;
     public DbSet<BookGenre> BookGenre { get; set; } = default!;
     public DbSet<BookTag> BookTag { get; set; } = default!;
     public DbSet<Genre> Genre { get; set; } = default!;
     public DbSet<Review> Review { get; set; } = default!;
-    public DbSet<Reviewer> Reviewer { get; set; } = default!;
+    public DbSet<User> Reviewer { get; set; } = default!;
     public DbSet<Tag> Tag { get; set; } = default!;
 
     public DataContext(DbContextOptions<DataContext> options) : base(options)
