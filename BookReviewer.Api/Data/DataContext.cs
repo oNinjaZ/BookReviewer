@@ -16,11 +16,22 @@ public class DataContext : DbContext
 
     public DataContext(DbContextOptions<DataContext> options) : base(options)
     {
-        
+
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<AuthorBook>()
+            .HasKey(ab => new { ab.AuthorId, ab.BookId });
+        modelBuilder.Entity<AuthorBook>()
+            .HasOne(a => a.Author)
+            .WithMany(ab => ab.AuthorBooks)
+            .HasForeignKey(a => a.AuthorId);
+        modelBuilder.Entity<AuthorBook>()
+            .HasOne(b => b.Book)
+            .WithMany(ab => ab.AuthorBooks)
+            .HasForeignKey(b => b.BookId);
+
         modelBuilder.Entity<BookGenre>()
             .HasKey(bg => new { bg.BookId, bg.GenreId });
         modelBuilder.Entity<BookGenre>()
