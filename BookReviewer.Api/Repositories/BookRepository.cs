@@ -16,8 +16,16 @@ public class BookRepository : IBookRepository
     public async Task<ICollection<Book>> GetBooksAsync() => await _context.Book.ToListAsync();
 
     public async Task<Book?> GetBookAsync(int id) => await _context.Book.FirstOrDefaultAsync(b => b.Id == id);
-    
+
     public async Task<bool> BookExistsAsync(int id) => await _context.Book.AnyAsync(b => b.Id == id);
+    
+    public IEnumerable<AuthorBook> GetBooks(int authorId)
+    {
+        var books = _context.AuthorBooks.Where(ab => ab.AuthorId == authorId)
+            .Include(ab => ab.Book)
+            .AsEnumerable();
+        return books;
+    }
 
     public async Task<Book?> GetBookAsync(string title)
     {
