@@ -17,7 +17,7 @@ public class AuthorBookRepository : IAuthorBookRepository
 
     public async Task<bool> AddAuthorToBookAsync(AuthorBookDto dto)
     {
-        await _context.AuthorBooks.AddAsync(new AuthorBook
+        await _context.AuthorBook.AddAsync(new AuthorBook
         {
             AuthorId = dto.AuthorId,
             BookId = dto.BookId
@@ -28,7 +28,7 @@ public class AuthorBookRepository : IAuthorBookRepository
 
     public async Task<bool> CheckExistsAsync(int authorId, int bookId)
     {
-        return await _context.AuthorBooks.AnyAsync(
+        return await _context.AuthorBook.AnyAsync(
             ab => ab.AuthorId == authorId && ab.BookId == bookId);
     }
 
@@ -44,7 +44,7 @@ public class AuthorBookRepository : IAuthorBookRepository
 
     public async Task<AuthorBook?> GetByIdsAsync(int authorId, int bookId)
     {
-        return await _context.AuthorBooks.FirstOrDefaultAsync(
+        return await _context.AuthorBook.FirstOrDefaultAsync(
             ab => ab.AuthorId == authorId && ab.BookId == bookId);
     }
 }
