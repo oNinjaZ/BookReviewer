@@ -10,11 +10,13 @@ builder.Services.AddDbContext<DataContext>(opts =>
 {
     opts.UseSqlite(builder.Configuration.GetValue<string>("ConnectionStrings:Sqlite"));
 });
-builder.Services.AddBookEndpoints();
+builder.Services.AddBookEndpoints()
+    .AddAuthorEndpoints();
 
 var app = builder.Build();
 
 app.UseBookEndpoints();
+app.UseAuthorEndpoints();
 
 if (app.Environment.IsDevelopment())
 {
