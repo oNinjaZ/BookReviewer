@@ -33,4 +33,5 @@ public interface IBookRepository
 
     
     Task<bool> BookExistsAsync(int id);
+    IEnumerable<AuthorBook> GetBooks(int authorId);
 }

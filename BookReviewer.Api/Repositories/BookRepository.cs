@@ -21,7 +21,7 @@ public class BookRepository : IBookRepository
     
     public IEnumerable<AuthorBook> GetBooks(int authorId)
     {
-        var books = _context.AuthorBooks.Where(ab => ab.AuthorId == authorId)
+        var books = _context.AuthorBook.Where(ab => ab.AuthorId == authorId)
             .Include(ab => ab.Book)
             .AsEnumerable();
         return books;

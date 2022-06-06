@@ -24,5 +24,12 @@ public static class AuthorEndpoints
             var authors = await authorRepo.GetAuthorsAsync();
             return Results.Ok(authors);
         });
+
+        app.MapDelete("/authors/{id}", async (int id, IAuthorRepository authorRepo) =>
+        {
+            return await authorRepo.DeleteAuthorAsync(id) 
+                ? Results.Ok() 
+                : Results.NotFound();
+        });
     }
 }
