@@ -11,7 +11,7 @@ public class DataContext : DbContext
     public DbSet<Review> Review { get; set; } = default!;
     public DbSet<User> User { get; set; } = default!;
     public DbSet<Tag> Tag { get; set; } = default!;
-    public DbSet<AuthorBook> AuthorBooks { get; set; } = default!;
+    public DbSet<AuthorBook> AuthorBook { get; set; } = default!;
     public DbSet<BookGenre> BookGenre { get; set; } = default!;
     public DbSet<BookTag> BookTag { get; set; } = default!;
 
