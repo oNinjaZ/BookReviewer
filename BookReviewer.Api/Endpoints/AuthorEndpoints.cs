@@ -23,12 +23,17 @@ public static class AuthorEndpoints
                 FirstName = dto.FirstName,
                 LastName = dto.LastName
             });
+
+            if (!created)
+                return Results.BadRequest();
+            
+            return Results.Ok();
         });
 
         app.MapGet("/authors", async (IAuthorRepository authorRepo) =>
         {
             var authors = await authorRepo.GetAuthorsAsync();
-            return Results.Ok(authors);
+            return Results.Ok(authors.Select(a => a.AsDto()));
         });
 
         app.MapGet("/authors/{id}", async (int id, IAuthorRepository authorRepo) =>
