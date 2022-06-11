@@ -21,7 +21,7 @@ public class BookRepository : IBookRepository
     }
 
     public async Task<IEnumerable<Book>> GetBooksAsync() => await _context.Book.ToListAsync();
-    
+
     public async Task<Book?> GetBookAsync(int id) => await _context.Book.FirstOrDefaultAsync(b => b.Id == id);
 
 
@@ -37,4 +37,9 @@ public class BookRepository : IBookRepository
 
     public async Task<bool> BookExistsAsync(int id) => await _context.Book.AnyAsync(b => b.Id == id);
 
+    public async Task<bool> SaveAsync()
+    {
+        var saved = await _context.SaveChangesAsync();
+        return saved > 0 ? true : false;
+    }
 }

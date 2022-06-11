@@ -44,4 +44,6 @@ public interface IBookRepository
     /// <param name="id"></param>
     /// <returns></returns>
     Task<bool> BookExistsAsync(int id);
+
+    Task<bool> SaveAsync();
 }

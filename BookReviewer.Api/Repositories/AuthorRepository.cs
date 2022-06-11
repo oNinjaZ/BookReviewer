@@ -17,17 +17,17 @@ public class AuthorRepository : IAuthorRepository
     public async Task<bool> CreateAuthorAsync(Author author)
     {
         await _context.Author.AddAsync(author);
-        return await _context.SaveChangesAsync() > 0;
-        
+        return await SaveAsync();
     }
 
     public async Task<IEnumerable<Author>> GetAuthorsAsync() => await _context.Author.ToListAsync();
 
     public async Task<Author?> GetAuthorAsync(int id) => await _context.Author.FirstOrDefaultAsync(a => a.Id == id);
 
-    public Task<bool> UpdateAuthorAsync(Author author)
+    public async Task<bool> UpdateAuthorAsync(Author author)
     {
-        throw new NotImplementedException(); // todo
+        _context.Update(author);
+        return await SaveAsync();
     }
 
     public async Task<bool> DeleteAuthorAsync(int id)
@@ -37,10 +37,15 @@ public class AuthorRepository : IAuthorRepository
             return false;
 
         _context.Author.Remove(author);
-        await _context.SaveChangesAsync();
-        return true;
+        return await SaveAsync();
     }
 
 
     public async Task<bool> AuthorExistsAsync(int id) => await _context.Author.AnyAsync(a => a.Id == id);
+
+    public async Task<bool> SaveAsync()
+    {
+        var saved = await _context.SaveChangesAsync();
+        return saved > 0 ? true : false;
+    }
 }

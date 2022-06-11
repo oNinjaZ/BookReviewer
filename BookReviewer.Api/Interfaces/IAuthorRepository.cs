@@ -1,3 +1,4 @@
+using BookReviewer.Api.Dtos.Author;
 using BookReviewer.Api.Models;
 
 namespace BookReviewer.Api.Interfaces;
@@ -10,5 +11,6 @@ public interface IAuthorRepository
     Task<bool> UpdateAuthorAsync(Author author);
     Task<bool> DeleteAuthorAsync(int id);
     Task<bool> AuthorExistsAsync(int id);
+    Task<bool> SaveAsync();
     
 }
