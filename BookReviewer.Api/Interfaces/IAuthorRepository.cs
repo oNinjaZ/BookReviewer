@@ -4,10 +4,10 @@ namespace BookReviewer.Api.Interfaces;
 
 public interface IAuthorRepository
 {
+    Task<bool> CreateAuthorAsync(Author author);
     Task<IEnumerable<Author>> GetAuthorsAsync();
     Task<Author?> GetAuthorAsync(int id);
-    Task<Author?> GetAuthorAsync(string first);
-    Task<bool> CreateAuthorAsync(Author author);
+    Task<bool> UpdateAuthorAsync(Author author);
     Task<bool> DeleteAuthorAsync(int id);
     Task<bool> AuthorExistsAsync(int id);
     

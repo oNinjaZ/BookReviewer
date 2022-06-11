@@ -5,10 +5,17 @@ namespace BookReviewer.Api.Interfaces;
 public interface IBookRepository
 {
     /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="book"></param>
+    /// <returns></returns>
+    Task<bool> CreateBookAsync(Book book);
+
+    /// <summary>
     /// Gets all Books.
     /// </summary>
     /// <returns></returns>
-    Task<ICollection<Book>> GetBooksAsync();
+    Task<IEnumerable<Book>> GetBooksAsync();
 
     /// <summary>
     /// Gets Book by id.
@@ -18,20 +25,23 @@ public interface IBookRepository
     Task<Book?> GetBookAsync(int id);
 
     /// <summary>
-    /// Gets Book by title.
+    /// 
     /// </summary>
-    /// <param name="id"></param>
-    /// <returns> The Book if found; otherwise, null.</returns>
-    Task<Book?> GetBookAsync(string title);
+    /// <param name="book"></param>
+    /// <returns></returns>
+    Task<bool> UpdateBookAsync(Book book);
 
     /// <summary>
-    /// Calculates the average review rating of a Book.
+    /// 
     /// </summary>
     /// <param name="id"></param>
-    /// <returns>The average rating, rounded to the nearest tenths.</returns>
-    Task<double> GetBookRatingAsync(int id);
+    /// <returns></returns>
+    Task<bool> DeleteBookAsync(int id);
 
-    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     Task<bool> BookExistsAsync(int id);
-    IEnumerable<AuthorBook> GetBooks(int authorId);
 }

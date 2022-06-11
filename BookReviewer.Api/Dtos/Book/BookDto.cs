@@ -1,4 +1,4 @@
-namespace BookReviewer.Api.Dtos;
+namespace BookReviewer.Api.Dtos.Book;
 
 public record BookDto
 {

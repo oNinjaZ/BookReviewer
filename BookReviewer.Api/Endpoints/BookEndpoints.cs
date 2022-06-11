@@ -25,15 +25,6 @@ public static class BookEndpoints
             var book = await bookRepo.GetBookAsync(id);
             return book is not null ? Results.Ok(book.AsDto()) : Results.NotFound();
         });
-
-        app.MapGet("/books/{id}/rating", async (int id, IBookRepository bookRepo) =>
-        {
-            var book = await bookRepo.GetBookAsync(id);
-            if (book is null)
-                return Results.NotFound();
-
-            var rating = await bookRepo.GetBookRatingAsync(id);
-            return Results.Ok(rating);
-        });
+        
     }
 }

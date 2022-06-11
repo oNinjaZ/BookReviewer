@@ -19,7 +19,7 @@ public static class AuthorEndpoints
             return Results.Ok(authors);
         });
 
-        app.MapPost("/authors", async (IAuthorRepository authorRepo) =>
+        app.MapPost("/authors/{authorid}/books", async (IAuthorRepository authorRepo) =>
         {
             var authors = await authorRepo.GetAuthorsAsync();
             return Results.Ok(authors);
