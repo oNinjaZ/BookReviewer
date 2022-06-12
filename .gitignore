@@ -14,6 +14,7 @@
 *.db-wal
 *.db-shm
 *.db
+*.sql
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
