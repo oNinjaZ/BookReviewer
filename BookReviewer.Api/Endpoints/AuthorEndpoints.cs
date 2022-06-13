@@ -26,14 +26,14 @@ public static class AuthorEndpoints
 
             if (!created)
                 return Results.BadRequest();
-            
+
             return Results.Ok();
         });
 
         app.MapGet("/authors", async (IAuthorRepository authorRepo) =>
         {
             var authors = await authorRepo.GetAuthorsAsync();
-            return Results.Ok(authors.Select(a => a.AsDto()));
+            return Results.Ok(authors);
         });
 
         app.MapGet("/authors/{id}", async (int id, IAuthorRepository authorRepo) =>
@@ -42,7 +42,19 @@ public static class AuthorEndpoints
             if (author is null)
                 return Results.NotFound();
 
-            return Results.Ok(author.AsDto());
+            return Results.Ok(author);
+        });
+
+        app.MapPut("/authors/{id}", async (int id, AuthorUpdateDto dto, IAuthorRepository authorRepo) =>
+        {
+            var updated = await authorRepo.UpdateAuthorAsync(new Author
+            {
+                Id = id,
+                FirstName = dto.FirstName,
+                LastName = dto.LastName
+            });
+
+            return updated ? Results.Ok() : Results.BadRequest();
         });
 
         app.MapDelete("/authors/{id}", async (int id, IAuthorRepository authorRepo) =>
