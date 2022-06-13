@@ -1,4 +1,4 @@
-using BookReviewer.Api.Dtos.Author;
+using BookReviewer.Api.Dtos;
 using BookReviewer.Api.Extensions;
 using BookReviewer.Api.Interfaces;
 using BookReviewer.Api.Models;
@@ -47,6 +47,11 @@ public static class AuthorEndpoints
 
         app.MapPut("/authors/{id}", async (int id, AuthorUpdateDto dto, IAuthorRepository authorRepo) =>
         {
+            var exists = await authorRepo.AuthorExistsAsync(id);
+
+            if (!exists)
+                return Results.NotFound();
+                
             var updated = await authorRepo.UpdateAuthorAsync(new Author
             {
                 Id = id,
