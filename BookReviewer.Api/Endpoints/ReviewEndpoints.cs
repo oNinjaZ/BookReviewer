@@ -1,3 +1,5 @@
+using BookReviewer.Api.Dtos;
+using BookReviewer.Api.Extensions;
 using BookReviewer.Api.Interfaces;
 using BookReviewer.Api.Repositories;
 
@@ -16,7 +18,7 @@ public static class ReviewEndpoints
         app.MapGet("/reviews", async (IReviewRepository reviewRepo) =>
         {
             var reviews = await reviewRepo.GetReviewsAsync();
-            return Results.Ok(reviews);
+            return Results.Ok(reviews.Select(r => r.AsDto()));
         });
 
         app.MapGet("/reviews/{id}", async (int id, IReviewRepository reviewRepo) =>
@@ -25,7 +27,7 @@ public static class ReviewEndpoints
             if (review is null)
                 return Results.NotFound();
 
-            return Results.Ok(review);
+            return Results.Ok(review.AsDto());
         });
     }
 }

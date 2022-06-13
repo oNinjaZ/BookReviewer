@@ -22,12 +22,18 @@ public class ReviewRepository : IReviewRepository
 
     public async Task<IEnumerable<Review>> GetReviewsAsync()
     {
-        return await _context.Review.ToListAsync();
+        return await _context.Review
+            .Include(r => r.Book)
+            .Include(r => r.User)
+            .ToListAsync();
     }
 
     public async Task<Review?> GetReviewAsync(int id)
     {
-        return await _context.Review.FirstOrDefaultAsync(r => r.Id == id);
+        return await _context.Review
+            .Include(r => r.Book)
+            .Include(r => r.User)
+            .FirstOrDefaultAsync(r => r.Id == id);
 
     }
 
