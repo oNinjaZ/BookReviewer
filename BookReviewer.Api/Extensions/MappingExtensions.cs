@@ -1,4 +1,4 @@
-using BookReviewer.Api.Dtos.Book;
+using BookReviewer.Api.Dtos;
 using BookReviewer.Api.Models;
 
 namespace BookReviewer.Api.Extensions;

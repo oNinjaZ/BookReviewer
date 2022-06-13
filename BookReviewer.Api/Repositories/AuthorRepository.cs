@@ -1,4 +1,5 @@
 using BookReviewer.Api.Data;
+using BookReviewer.Api.Dtos;
 using BookReviewer.Api.Interfaces;
 using BookReviewer.Api.Models;
 using Microsoft.EntityFrameworkCore;
@@ -20,9 +21,22 @@ public class AuthorRepository : IAuthorRepository
         return await SaveAsync();
     }
 
-    public async Task<IEnumerable<Author>> GetAuthorsAsync() => await _context.Author.ToListAsync();
+    public async Task<IEnumerable<Author>> GetAuthorsAsync()
+    {
+        return await _context.Author
+            .Include(a => a.AuthorBooks)
+            .ThenInclude(ab => ab.Book)
+            .ToListAsync();
 
-    public async Task<Author?> GetAuthorAsync(int id) => await _context.Author.FirstOrDefaultAsync(a => a.Id == id);
+    }
+
+    public async Task<Author?> GetAuthorAsync(int id)
+    {
+        return await _context.Author
+            .Include(a => a.AuthorBooks)
+            .ThenInclude(ab => ab.Book)
+            .FirstAsync(author => author.Id == id);
+    }
 
     public async Task<bool> UpdateAuthorAsync(Author author)
     {
