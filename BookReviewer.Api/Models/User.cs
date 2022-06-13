@@ -6,5 +6,7 @@ public class User
     public string Username { get; set; } = default!;
     public string Password { get; set; } = default!;
     public string Email { get; set; } = default!;
+
+    // navigation props
     public ICollection<Review> Reviews { get; set; } = default!;
 }
