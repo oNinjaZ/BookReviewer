@@ -1,7 +1,6 @@
 using BookReviewer.Api.Data;
 using BookReviewer.Api.Endpoints;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
