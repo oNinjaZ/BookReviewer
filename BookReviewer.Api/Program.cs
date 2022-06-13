@@ -1,22 +1,29 @@
 using BookReviewer.Api.Data;
 using BookReviewer.Api.Endpoints;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 builder.Services.AddDbContext<DataContext>(opts =>
 {
     opts.UseSqlite(builder.Configuration.GetValue<string>("ConnectionStrings:Sqlite"));
 });
+
 builder.Services.AddBookEndpoints()
-    .AddAuthorEndpoints();
+    .AddAuthorEndpoints()
+    .AddReviewEndpoints()
+    .AddUserEndpoints();
 
 var app = builder.Build();
 
 app.UseBookEndpoints();
 app.UseAuthorEndpoints();
+app.UseReviewEndpoints();
+app.UseUserEndpoints();
 
 if (app.Environment.IsDevelopment())
 {
