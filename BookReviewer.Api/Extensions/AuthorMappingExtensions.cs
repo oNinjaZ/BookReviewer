@@ -1,4 +1,5 @@
-using BookReviewer.Api.Dtos.Author;
+using System.Net;
+using BookReviewer.Api.Dtos;
 using BookReviewer.Api.Models;
 
 namespace BookReviewer.Api.Extensions;
