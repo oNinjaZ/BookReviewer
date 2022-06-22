@@ -12,6 +12,6 @@ public class User
 
     // navigation props
 
-    [JsonIgnore]
+    //[JsonIgnore]
     public ICollection<Review> Reviews { get; set; } = default!;
 }

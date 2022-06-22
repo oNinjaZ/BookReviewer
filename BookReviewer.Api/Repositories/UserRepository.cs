@@ -27,7 +27,9 @@ public class UserRepository : IUserRepository
 
     public async Task<User?> GetUserAsync(int id)
     {
-        return await _context.User.FirstOrDefaultAsync(u => u.Id == id);
+        return await _context.User
+        .Include(u => u.Reviews)
+        .FirstOrDefaultAsync(u => u.Id == id);
     }
 
     public async Task<bool> UpdateUserAsync(User user)
@@ -51,7 +53,7 @@ public class UserRepository : IUserRepository
     public async Task<bool> SaveAsync()
     {
         var saved = await _context.SaveChangesAsync();
-        return saved > 0 ? true : false;
+        return saved > 0;
     }
 
 

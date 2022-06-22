@@ -58,6 +58,6 @@ public class ReviewRepository : IReviewRepository
     public async Task<bool> SaveAsync()
     {
         var saved = await _context.SaveChangesAsync();
-        return saved > 0 ? true : false;
+        return saved > 0;
     }
 }

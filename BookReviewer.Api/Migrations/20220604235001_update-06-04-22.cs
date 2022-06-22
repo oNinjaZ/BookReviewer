@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
+#pragma warning disable IDE1006
 
 namespace BookReviewer.Api.Migrations
 {

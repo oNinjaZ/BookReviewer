@@ -1,3 +1,4 @@
+using BookReviewer.Api.Dtos;
 using BookReviewer.Api.Interfaces;
 using BookReviewer.Api.Repositories;
 
@@ -25,6 +26,12 @@ public static class UserEndpoints
             if (user is null)
                 return Results.NotFound();
 
+            // return Results.Ok(new UserReadDto
+            // {
+            //     Id = user.Id,
+            //     Username = user.Username,
+            //     Email = user.Email
+            // });
             return Results.Ok(user);
         });
     }

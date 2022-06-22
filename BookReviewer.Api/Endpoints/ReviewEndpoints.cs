@@ -1,6 +1,7 @@
 using BookReviewer.Api.Dtos;
 using BookReviewer.Api.Extensions;
 using BookReviewer.Api.Interfaces;
+using BookReviewer.Api.Models;
 using BookReviewer.Api.Repositories;
 
 namespace BookReviewer.Api.Endpoints;
@@ -15,6 +16,23 @@ public static class ReviewEndpoints
 
     public static void UseReviewEndpoints(this IEndpointRouteBuilder app)
     {
+        app.MapPost("reviews", async (ReviewCreateDto reviewDto, IReviewRepository reviewRepo) =>
+        {
+            var newReview = new Review
+            {
+                Text = reviewDto.Text,
+                Rating = reviewDto.Rating,
+                BookId = reviewDto.BookId,
+                UserId = reviewDto.UserId
+            };
+
+            var created = await reviewRepo.CreateReviewAsync(newReview);
+
+            if (!created)
+                return Results.BadRequest();
+            
+            return Results.Ok(newReview);
+        });
         app.MapGet("/reviews", async (IReviewRepository reviewRepo) =>
         {
             var reviews = await reviewRepo.GetReviewsAsync();

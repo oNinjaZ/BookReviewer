@@ -10,7 +10,6 @@ public class Author
 
 
     // navigation props
-
     [JsonIgnore]
     public ICollection<AuthorBook> AuthorBooks { get; set; } = default!;
 }

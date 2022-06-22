@@ -7,6 +7,6 @@ public class AuthorReadDto
     public int Id { get; set; }
     public string FirstName { get; set; } = default!;
     public string? LastName { get; set; }
-    public IList<AuthorBook> Books { get; set; } = default!;
+    public IEnumerable<AuthorBook> Books { get; set; } = default!;
 
 }
